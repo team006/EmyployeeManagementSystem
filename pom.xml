@@ -87,6 +87,11 @@
             <artifactId>postgresql</artifactId>
             <version>42.2.18</version>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
     </dependencies>
 
     <build>
