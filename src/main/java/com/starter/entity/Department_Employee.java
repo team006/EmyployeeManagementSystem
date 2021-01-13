@@ -6,20 +6,18 @@ import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
 @Table(name = "department_emp")
+@Entity
 public class Department_Employee {
 
     @Id
     private Integer department_emp_id;
-
-    @OneToOne
-    private Department department_id;
-
-    @OneToMany
-    private Employee employee_id;
+    private Integer department_id;
+    private Integer emp_id;
 
     @CreatedDate
     @Temporal(TemporalType.TIMESTAMP)
