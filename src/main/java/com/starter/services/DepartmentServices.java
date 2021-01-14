@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface DepartmentServices {
     Iterable<Department> listDepartment();
+    Department addDepartment(Department department);
 }

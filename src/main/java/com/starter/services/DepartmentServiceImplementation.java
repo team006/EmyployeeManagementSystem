@@ -21,5 +21,14 @@ public class DepartmentServiceImplementation implements DepartmentServices {
         return departmentRepository.findAll();
     }
 
+    @Override
+    public Department addDepartment(Department department){
+        Department addDepartment = new Department();
+        addDepartment.setDepartment_id(department.getDepartment_id());
+        addDepartment.setName(department.getName());
+        addDepartment.setShort_name(department.getShort_name());
+        return departmentRepository.save(department);
+    }
+
 
 }
