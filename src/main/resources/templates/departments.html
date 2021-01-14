@@ -133,15 +133,13 @@
     <div class="container" id="card_pad">
 
 
-        <form class="form-group" method="POST"  th:action="@{/detail/search_id}" onsubmit="return valid_eid()">
-
-
+        <form class="form-group" method="POST"  th:action="@{/departmentDetail/search_id}" onsubmit="return valid_eid()">
             <div class="row">
                 <div class="col-lg-4">
-                    <label>Search by Employee ID : </label>
+                    <label>Search by Department ID : </label>
                     <div class="input-group">
-                        <input type="text" id="eid_id" class="form-control"
-                               placeholder="enter employee id"  name="emp_id" onkeyup="valid_eid()"/>
+                        <input type="text" name="department_id" id="department_id" class="form-control"
+                               placeholder="enter department id"  onkeyup="valid_eid()"/>
                         <span class="input-group-addon" id="eid_i"></span>
                     </div>
                     <label>

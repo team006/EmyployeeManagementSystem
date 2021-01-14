@@ -33,5 +33,17 @@ public class DepartmentServiceImplementation implements DepartmentServices {
         return departmentRepository.save(department);
     }
 
+    @Override
+    public boolean findPKey(Integer department_id) {
+        boolean department_exist;
+        department_exist=departmentRepository.exists(department_id);
+        return department_exist;
+    }
+
+    @Override
+    public void deleteRecord(Integer department_id) {
+        departmentRepository.delete(department_id);
+    }
+
 
 }
