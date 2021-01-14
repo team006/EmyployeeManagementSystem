@@ -179,7 +179,7 @@ public class AppController {
 	 */
 	
 	
-	@RequestMapping(value="updateddetail",method=RequestMethod.POST)
+	@RequestMapping(value="0",method=RequestMethod.POST)
 	public String saveUpdatedDetails( Employee employee) {
 	
 //		try {
