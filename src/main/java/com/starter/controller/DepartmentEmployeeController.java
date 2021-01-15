@@ -48,16 +48,20 @@ public class DepartmentEmployeeController {
         emp.setDepartment(name);
         appRepository.save(emp);
         departmentEmployeeRepository.save(addEmployeeInDepartment);
-        return "departments";
+        return "redirect:/departmentDetail/{departmentId}";
     }
     @PostMapping("/departmentDetail/{departmentId}/moveEmployee")
     public String moveEmployee(@PathVariable Integer departmentId,
                                @RequestParam Integer empId,
                                @RequestParam Integer newDepartmentId){
 
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         DepartmentEmployee departmentEmployee = departmentEmployeeRepository.findByEmpId(empId);
         departmentEmployee.setDepartmentId(newDepartmentId);
+        departmentEmployee.setFrom_date(timestamp);
         departmentEmployeeRepository.save(departmentEmployee);
+
+
 
         String name = departmentRepository.findOne(newDepartmentId).getName();
         Employee emp = appRepository.findOne(empId);

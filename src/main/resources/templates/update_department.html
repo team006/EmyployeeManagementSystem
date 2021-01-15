@@ -155,7 +155,7 @@
                         <div class="input-group">
                            <input type="text" name="name" id="name_id" class="form-control"
                               placeholder="enter name" th:field="*{name}" onkeyup="valid_name()"/>
-                           <span class="input-group-addon" id="name_i"></span>
+                            <label style="color: red;" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">ชื่อนี้ถูกใช้แล้ว</label>
                         </div>
                         <label>
                            <div id="name_v"></div>
@@ -166,7 +166,7 @@
                         <div class="input-group">
                            <input type="text" name="sname" id="sname_id" class="form-control"
                               placeholder="enter short name" th:field="*{shortName}" onkeyup="valid_sname()"/>
-                           <span class="input-group-addon" id="sname_i"></span>
+                            <label style="color: red;" th:if="${#fields.hasErrors('shortName')}" th:errors="*{shortName}">ชื่อย่อนี้ถูกใช้แล้ว</label>
                         </div>
                         <label>
                            <div id="sname_v"></div>

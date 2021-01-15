@@ -37,4 +37,18 @@ public class DepartmentValidator implements Validator {
             errors.rejectValue("shortName",null , "ชื่อย่อ Department นี้มีผู้ใช้งานแล้ว");
         }
     }
+
+    public void nameValidate(Object target, Errors errors) {
+        Department department = (Department) target;
+
+        Department checkDepartmentName = departmentRepository.findByName(department.getName());
+        if (checkDepartmentName != null){
+            errors.rejectValue("name",null , "ชื่อ Department นี้มีผู้ใช้งานแล้ว");
+        }
+
+        Department checkDepartmentShortName = departmentRepository.findByShortName(department.getShortName());
+        if (checkDepartmentShortName != null){
+            errors.rejectValue("shortName",null , "ชื่อย่อ Department นี้มีผู้ใช้งานแล้ว");
+        }
+    }
 }

@@ -153,7 +153,7 @@
                            <div class="input-group">
                                <input type="text" name="fname" id="fname_id" class="form-control"
                                       placeholder="enter  name" th:field="*{name}" onkeyup="valid_fname()"/>
-                               <label style="color: red;" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">ID นี้ถูกใช้แล้ว</label>
+                               <label style="color: red;" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">ชื่อนี้ถูกใช้แล้ว</label>
                            </div>
                            <label>
                                <div id="fname_v"></div>
@@ -164,7 +164,7 @@
                            <div class="input-group">
                                <input type="text" name="lname" id="lname_id" class="form-control"
                                       placeholder="enter short name" th:field="*{shortName}" onkeyup="valid_lname()"/>
-                               <label style="color: red;" th:if="${#fields.hasErrors('shortName')}" th:errors="*{shortName}">ID นี้ถูกใช้แล้ว</label>
+                               <label style="color: red;" th:if="${#fields.hasErrors('shortName')}" th:errors="*{shortName}">ชื่อย่อนี้ถูกใช้แล้ว</label>
                            </div>
                            <label>
                                <div id="lname_v"></div>
