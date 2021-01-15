@@ -92,12 +92,12 @@
                     <nav class="site-navigation position-relative text-right" role="navigation">
 
                         <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                            <li><a href="#" th:href="@{/}" class="nav-link">Home</a></li>
+                            <li><a  href="#" th:href="@{/}" class="nav-link">Home</a></li>
                             <li><a href="#about_uss" class="nav-link">About Us</a></li>
-
-
                             <li><a href="#" th:href="@{/employee}" class="nav-link">Employees</a></li>
+                            <li><a href="#" th:href="@{/departments}" class="nav-link">Department</a></li>
                             <li><a href="#" th:href="@{/addemployee}" class="nav-link">Add Employee</a></li>
+                            <li><a href="#" th:href="@{/addDepartment}" class="nav-link">Add Department</a></li>
                             <li><a href="#contact-section" class="nav-link">Contact</a></li>
                         </ul>
                     </nav>
@@ -122,9 +122,21 @@
                         <div class="card-title mb-4">
                             <div class="d-flex justify-content-start">
                                 <div class="userData ml-3">
+                                    <div>
+                                    <h2 style="font-size: 1.5rem; font-weight: bold; display:inline; float: left">Name : </h2>
                                     <h2 style="font-size: 1.5rem; font-weight: bold; display:inline;"
                                         th:text="${departmentDetail.name}"><a href="javascript:void(0);"></a></h2>
-                                    <h4 class="d-block" th:text="${departmentDetail.shortName}"></h4>
+                                    </div>
+                                        <br/>
+                                    <div>
+                                        <h4 class="d-block" style="float: left">Short name : </h4>
+                                        <h4 class="d-block" th:text="${departmentDetail.shortName}"></h4>
+                                    </div>
+                                    <br/>
+                                    <div>
+                                        <h4 class="d-block" style="float: left">Department ID : </h4>
+                                        <h4 class="d-block" th:text="${departmentDetail.departmentId}"></h4>
+                                    </div>
                                 </div>
                             </div>
 
@@ -143,38 +155,44 @@
                                 <div class="card card-default" id="card_contacts">
                                     <div id="contacts" class="panel-collapse collapse show" aria-expanded="true"
                                          style="">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col">Employee ID</th>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Email</th>
+                                                <th scope="col"></th>
+                                                <th scope="col"></th>
+                                            </tr>
+                                            </thead>
                                         <ul class="list-group pull-down" id="contact-list" th:each="employee : ${employeeInDepartment}">
-                                            <li class="list-group-item">
-                                                <div class="row w-100">
 
-                                                    <div class="col-12 col-sm-6 col-md-5 text-center text-sm-left">
-                                                        <span class="fa fa-mobile fa-2x text-success float-right pulse"
-                                                              title="online now"></span>
-                                                        <label class="name lead" th:text="${employee.employee_id}"></label>
-                                                        <label class="name lead"
-                                                               th:text="${employee.first_name}"></label>
-                                                        <br/>
+                                                <tbody>
+                                                <tr>
+                                                    <td th:text="${employee.employee_id}"></td>
+                                                    <td th:text="${employee.first_name}"></td>
+                                                    <td th:text="${employee.email}"></td>
+                                                    <td>
+                                                        <span>
+                                                            <button type="button" class="btn btn-warning"
+                                                                    data-toggle="modal"
+                                                                    data-target="#exampleModal2"
+                                                                    th:attr="onclick=|moveDepartment('${employee.employee_id}')|">
+                                                                ย้ายแผนก
+                                                            </button>
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <a th:href="${'/departmentDetail/resign/' + employee.employee_id}"
+                                                           class="btn btn-danger"><span
+                                                                class="glyphicon glyphicon-music"></span>ลาออก</a>
+                                                    </td>
 
-                                                    </div>
-                                                    <div id="outer" class="col-12 col-sm-6 col-md-4 px-0">
-                                                        <div class="row-fluid">
-                                                            <div class="inner">
+                                                </tr>
 
-                                                                <span>
-                                                                        <button type="button" class="btn btn-primary" data-toggle="modal"
-                                                                                data-target="#exampleModal2" th:attr="onclick=|moveDepartment('${employee.employee_id}')|" >
-                                                                            ย้ายแผนก
-                                                                        </button>
-                                                                </span>
-
-                                                               <a th:href="${'/departmentDetail/resign/' + employee.employee_id}" class="btn btn-primary"><span class="glyphicon glyphicon-music"></span>Delete</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-
+                                                </tbody>
                                         </ul>
+                                        </table>
                                         <!--/contacts list-->
                                     </div>
                                 </div>
@@ -326,7 +344,9 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form class="form-group" method="POST" enctype="multipart/form-data" th:action="@{${'/departmentDetail/'+ departmentId+'/moveEmployee'}}" onsubmit="return valid()">
+                    <form class="form-group" method="POST" enctype="multipart/form-data"
+                          th:action="@{${'/departmentDetail/'+ departmentId+'/moveEmployee'}}"
+                          onsubmit="return valid()">
                         <div class="modal-body">
                             <label class="col-form-label">Enter Department ID for move:</label>
                             <input name="newDepartmentId" id="newDepartmentId" type="text" class="form-control"/>
@@ -364,11 +384,10 @@
 <script type="text/javascript" th:src="@{/js/main.js}"></script>
 
 
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" th:src="@{/js/prof_js.js}"></script>
 <script>
-    function moveDepartment(empId){
+    function moveDepartment(empId) {
         var empIdForm = document.getElementById("empForm");
         empIdForm.value = empId;
     }

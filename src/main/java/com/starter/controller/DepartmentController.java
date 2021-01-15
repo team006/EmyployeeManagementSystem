@@ -4,11 +4,15 @@ import com.starter.entity.Department;
 import com.starter.repository.DepartmentEmployeeRepository;
 import com.starter.repository.DepartmentRepository;
 import com.starter.services.DepartmentEmployeeSerivceImplementation;
+import com.starter.services.DepartmentEmployeeSerivces;
 import com.starter.services.DepartmentServices;
+import com.starter.validator.DepartmentValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.Map;
@@ -22,7 +26,9 @@ public class DepartmentController {
     @Autowired
     private DepartmentRepository departmentRepository;
     @Autowired
-    private DepartmentEmployeeSerivceImplementation departmentEmployeeSerivceImplementation;
+    private DepartmentEmployeeSerivces departmentEmployeeSerivce;
+    @Autowired
+    private DepartmentValidator departmentValidator;
 
     @GetMapping("/departments")
     public String listDepartment(Model model) {
@@ -32,20 +38,30 @@ public class DepartmentController {
 
     @GetMapping("/addDepartment")
     public String getAddDepartment(Model model){
-        model.addAttribute("addDepartment" , new Department());
+        if(!model.containsAttribute("addDepartment")) {
+            model.addAttribute("addDepartment", new Department());
+        }
         return "addDepartment";
     }
 
     @PostMapping("/addDepartment")
-    public String addDepartment(@Valid Department department){
+    public String addDepartment(@Valid Department department,
+                                BindingResult bindingResult,
+                                RedirectAttributes redirectAttributes){
+        departmentValidator.validate(department,bindingResult);
+        if (bindingResult.hasErrors()){
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.addDepartment" , bindingResult);
+            redirectAttributes.addFlashAttribute("addDepartment", department);
+            return  "redirect:/addDepartment";
+        }
         departmentService.addDepartment(department);
-        return "redirect:/departments";
+        return "departments";
     }
 
     @GetMapping("/departmentDetail/{departmentId}")
     public String employee_Details(@PathVariable Integer departmentId,Model model) {
         model.addAttribute("departmentDetail", departmentService.getDepartmentById(departmentId));
-        model.addAttribute("employeeInDepartment",departmentEmployeeSerivceImplementation.findEmpolyeeByDepartmentId(departmentId));
+        model.addAttribute("employeeInDepartment",departmentEmployeeSerivce.findEmpolyeeByDepartmentId(departmentId));
         return "departmentDetail";
     }
 

@@ -107,8 +107,6 @@
                         <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
                             <li><a  href="#" th:href="@{/}" class="nav-link">Home</a></li>
                             <li><a href="#about_uss" class="nav-link">About Us</a></li>
-
-
                             <li><a href="#" th:href="@{/employee}" class="nav-link">Employees</a></li>
                             <li><a href="#" th:href="@{/departments}" class="nav-link">Department</a></li>
                             <li><a href="#" th:href="@{/addemployee}" class="nav-link">Add Employee</a></li>
@@ -166,42 +164,28 @@
                 <ul class="list-group pull-down" id="contact-list" th:each="department : ${Department}" >
                     <li class="list-group-item" >
                         <div class="row w-100">
-
                             <div class="col-12 col-sm-6 col-md-5 text-center text-sm-left">
                                 <span class="fa fa-mobile fa-2x text-success float-right pulse" title="online now"></span>
                                 <label class="name lead" th:text="${department.name}"></label>
-                                <label class="name lead" th:text="${department.shortName}"></label>
-                                <br/>
-
-
-
-
+                                <div>
+                                    <p style="float: left">Department ID : </p>
+                                    <span class="name lead" th:text="${department.departmentId}"></span>
+                                </div>
                             </div>
                             <div id="outer" class="col-12 col-sm-6 col-md-4 px-0">
                                 <div class="row-fluid" >
-
                                     <div class="inner">
-
-
                                         <!--  <div class="inner" style="margin: 6%"><a th:href="${ '/detail/' + product.employee_id}">View</a></div> -->
                                         <a th:href="${ '/departmentDetail/' + department.departmentId}" class="btn btn-primary"><span class="glyphicon glyphicon-music"></span>View</a>
                                         <a th:href="${'/departmentDetail/editDepartment/' + department.departmentId}" class="btn btn-primary" ><span class="glyphicon glyphicon-music"></span>Edit</a>
                                         <a th:href="${'/departmentDetail/delete/' + department.departmentId}" class="btn btn-primary" ><span class="glyphicon glyphicon-music"></span>Delete</a>
-
                                         <!--  <div class="inner" style="margin: 6%"><a th:href="${'/detail/edit/' + product.employee_id}" >Edit</a></div>
                                          <div class="inner" style="margin: 6%"><a th:href="${'/detail/delete/' + product.employee_id}">Delete</a></div> -->
-
                                     </div>
                                 </div>
                             </div>
-
-
-
-
-
                         </div>
                     </li>
-
                 </ul>
                 <!--/contacts list-->
             </div>

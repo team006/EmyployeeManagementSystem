@@ -8,9 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
+@Table(name = "department")
 @Getter
 @Setter
-@Table(name = "department")
 @Entity
 public class Department {
 
@@ -19,12 +20,12 @@ public class Department {
     private Integer departmentId;
 
     private String name;
+
     @Column(name = "short_name")
     private String shortName;
 
 
     public Department() {
     }
-
 
 }

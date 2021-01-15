@@ -64,7 +64,7 @@ public class DepartmentEmployeeController {
         emp.setDepartment(name);
         appRepository.save(emp);
 
-        return "departments";
+        return "redirect:/departmentDetail/{departmentId}";
     }
 
     @RequestMapping("/departmentDetail/resign/{employeeId}")
@@ -72,6 +72,6 @@ public class DepartmentEmployeeController {
         DepartmentEmployee departmentEmployee = departmentEmployeeRepository.findByEmpId(employeeId);
         departmentEmployeeRepository.delete(departmentEmployee.getDepartmentEmpId());
         appRepository.delete(employeeId);
-        return "redirect:/departments";
+        return "redirect:/departmentDetail/{departmentId}";
     }
 }

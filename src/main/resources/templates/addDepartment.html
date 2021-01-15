@@ -99,16 +99,15 @@
           <div class="col-12 col-md-10 d-none d-xl-block">
             <nav class="site-navigation position-relative text-right" role="navigation">
 
-              <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                 <li><a  href="#" th:href="@{/}" class="nav-link">Home</a></li>
-                <li><a href="#about_uss" class="nav-link">About Us</a></li>
-            
-       
-                <li><a href="#" th:href="@{/employee}" class="nav-link">Employees</a></li>
-               <!--  <li><a href="#testimonials-section" class="nav-link">Testimonials</a></li> -->
-                <li><a href="#" th:href="@{/addemployee}" class="nav-link">Add Employee</a></li>
-                <li><a href="#contact-section" class="nav-link">Contact</a></li>
-              </ul>
+                <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                    <li><a  href="#" th:href="@{/}" class="nav-link">Home</a></li>
+                    <li><a href="#about_uss" class="nav-link">About Us</a></li>
+                    <li><a href="#" th:href="@{/employee}" class="nav-link">Employees</a></li>
+                    <li><a href="#" th:href="@{/departments}" class="nav-link">Department</a></li>
+                    <li><a href="#" th:href="@{/addemployee}" class="nav-link">Add Employee</a></li>
+                    <li><a href="#" th:href="@{/addDepartment}" class="nav-link">Add Department</a></li>
+                    <li><a href="#contact-section" class="nav-link">Contact</a></li>
+                </ul>
             </nav>
           </div>
 
@@ -138,8 +137,8 @@
                            <label>Employee ID : </label>
                            <div class="input-group">
                                <input type="text" name="eid" id="eid_id" class="form-control"
-                                      placeholder="enter employee id" th:field="*{departmentId}" onkeyup="valid_eid()"/>
-                               <span class="input-group-addon" id="eid_i"></span>
+                                      placeholder="enter department id" th:field="*{departmentId}" onkeyup="valid_eid()"/>
+                               <label style="color: red;" th:if="${#fields.hasErrors('departmentId')}" th:errors="*{departmentId}">ID นี้ถูกใช้แล้ว</label>
                            </div>
                            <label>
                                <div id="eid_v"></div>
@@ -153,8 +152,8 @@
                            <label>Name : </label>
                            <div class="input-group">
                                <input type="text" name="fname" id="fname_id" class="form-control"
-                                      placeholder="enter first name" th:field="*{name}" onkeyup="valid_fname()"/>
-                               <span class="input-group-addon" id="fname_i"></span>
+                                      placeholder="enter  name" th:field="*{name}" onkeyup="valid_fname()"/>
+                               <label style="color: red;" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">ID นี้ถูกใช้แล้ว</label>
                            </div>
                            <label>
                                <div id="fname_v"></div>
@@ -164,8 +163,8 @@
                            <label>Short Name : </label>
                            <div class="input-group">
                                <input type="text" name="lname" id="lname_id" class="form-control"
-                                      placeholder="enter last name" th:field="*{shortName}" onkeyup="valid_lname()"/>
-                               <span class="input-group-addon" id="lname_i"></span>
+                                      placeholder="enter short name" th:field="*{shortName}" onkeyup="valid_lname()"/>
+                               <label style="color: red;" th:if="${#fields.hasErrors('shortName')}" th:errors="*{shortName}">ID นี้ถูกใช้แล้ว</label>
                            </div>
                            <label>
                                <div id="lname_v"></div>
