@@ -138,7 +138,7 @@
                 <div class="col-lg-4">
                     <label>Search by Department ID : </label>
                     <div class="input-group">
-                        <input type="text" name="department_id" id="department_id" class="form-control"
+                        <input type="text" name="departmentId" id="departmentId" class="form-control"
                                placeholder="enter department id"  onkeyup="valid_eid()"/>
                         <span class="input-group-addon" id="eid_i"></span>
                     </div>
@@ -170,7 +170,7 @@
                             <div class="col-12 col-sm-6 col-md-5 text-center text-sm-left">
                                 <span class="fa fa-mobile fa-2x text-success float-right pulse" title="online now"></span>
                                 <label class="name lead" th:text="${department.name}"></label>
-                                <label class="name lead" th:text="${department.short_name}"></label>
+                                <label class="name lead" th:text="${department.shortName}"></label>
                                 <br/>
 
 
@@ -184,9 +184,9 @@
 
 
                                         <!--  <div class="inner" style="margin: 6%"><a th:href="${ '/detail/' + product.employee_id}">View</a></div> -->
-                                        <a th:href="${ '/departmentDetail/' + department.department_id}" class="btn btn-primary"><span class="glyphicon glyphicon-music"></span>View</a>
-                                        <a th:href="${'/departmentDetail/editDepartment/' + department.department_id}" class="btn btn-primary" ><span class="glyphicon glyphicon-music"></span>Edit</a>
-                                        <a th:href="${'/departmentDetail/delete/' + department.department_id}" class="btn btn-primary" ><span class="glyphicon glyphicon-music"></span>Delete</a>
+                                        <a th:href="${ '/departmentDetail/' + department.departmentId}" class="btn btn-primary"><span class="glyphicon glyphicon-music"></span>View</a>
+                                        <a th:href="${'/departmentDetail/editDepartment/' + department.departmentId}" class="btn btn-primary" ><span class="glyphicon glyphicon-music"></span>Edit</a>
+                                        <a th:href="${'/departmentDetail/delete/' + department.departmentId}" class="btn btn-primary" ><span class="glyphicon glyphicon-music"></span>Delete</a>
 
                                         <!--  <div class="inner" style="margin: 6%"><a th:href="${'/detail/edit/' + product.employee_id}" >Edit</a></div>
                                          <div class="inner" style="margin: 6%"><a th:href="${'/detail/delete/' + product.employee_id}">Delete</a></div> -->

@@ -6,7 +6,6 @@ import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 @Getter
 @Setter
@@ -16,9 +15,13 @@ public class DepartmentEmployee {
 
     @Id
     @GeneratedValue
-    private Integer department_emp_id;
-    private Integer department_id;
-    private Integer emp_id;
+    @Column(name = "department_emp_id")
+    private Integer departmentEmpId;
+
+    @Column(name = "department_id")
+    private Integer departmentId;
+    @Column(name = "emp_id")
+    private Integer empId;
 
     @CreatedDate
     @Temporal(TemporalType.TIMESTAMP)

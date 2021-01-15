@@ -16,10 +16,11 @@ public class Department {
 
     @Id
     @Column(name = "department_id")
-    private Integer department_id;
+    private Integer departmentId;
 
     private String name;
-    private String short_name;
+    @Column(name = "short_name")
+    private String shortName;
 
 
     public Department() {

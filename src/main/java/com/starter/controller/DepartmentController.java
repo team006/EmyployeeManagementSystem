@@ -1,7 +1,9 @@
 package com.starter.controller;
 
 import com.starter.entity.Department;
+import com.starter.repository.DepartmentEmployeeRepository;
 import com.starter.repository.DepartmentRepository;
+import com.starter.services.DepartmentEmployeeSerivceImplementation;
 import com.starter.services.DepartmentServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,8 @@ public class DepartmentController {
     private DepartmentServices departmentService;
     @Autowired
     private DepartmentRepository departmentRepository;
+    @Autowired
+    private DepartmentEmployeeSerivceImplementation departmentEmployeeSerivceImplementation;
 
     @GetMapping("/departments")
     public String listDepartment(Model model) {
@@ -41,6 +45,7 @@ public class DepartmentController {
     @GetMapping("/departmentDetail/{departmentId}")
     public String employee_Details(@PathVariable Integer departmentId,Model model) {
         model.addAttribute("departmentDetail", departmentService.getDepartmentById(departmentId));
+        model.addAttribute("employeeInDepartment",departmentEmployeeSerivceImplementation.findEmpolyeeByDepartmentId(departmentId));
         return "departmentDetail";
     }
 
@@ -53,10 +58,10 @@ public class DepartmentController {
     @PostMapping("/departmentDetail/editDepartment/{departmentId}")
     public String updateDepartmentDetail(@PathVariable Integer departmentId,
                                          @RequestParam String name,
-                                         @RequestParam String short_name){
+                                         @RequestParam String shortName){
             Department department = departmentRepository.findOne(departmentId);
             department.setName(name);
-            department.setShort_name(short_name);
+            department.setShortName(shortName);
             departmentRepository.save(department);
 
         return "redirect:/departmentDetail/{departmentId}" ;
@@ -64,18 +69,18 @@ public class DepartmentController {
 
     @PostMapping("/departmentDetail/search_id")
     public String searchDepartmentById(Model model,
-                                       @RequestParam("department_id") Integer department_id){
+                                       @RequestParam("departmentId") Integer departmentId){
 
-        model.addAttribute("departmentDetail", departmentService.getDepartmentById(department_id));
-        if(departmentService.findPKey(department_id))
+        model.addAttribute("departmentDetail", departmentService.getDepartmentById(departmentId));
+        if(departmentService.findPKey(departmentId))
             return "departmentDetail";
         else
             return "error";
     }
 
-    @RequestMapping("/departmentDetail/delete/{department_id}")
-    public String deleteDetails(@PathVariable Integer department_id) {
-        departmentService.deleteRecord(department_id);
+    @RequestMapping("/departmentDetail/delete/{departmentId}")
+    public String deleteDetails(@PathVariable Integer departmentId) {
+        departmentService.deleteRecord(departmentId);
         return "redirect:/departments";
     }
 

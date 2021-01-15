@@ -27,22 +27,22 @@ public class DepartmentServiceImplementation implements DepartmentServices {
     @Override
     public Department addDepartment(Department department){
         Department addDepartment = new Department();
-        addDepartment.setDepartment_id(department.getDepartment_id());
+        addDepartment.setDepartmentId(department.getDepartmentId());
         addDepartment.setName(department.getName());
-        addDepartment.setShort_name(department.getShort_name());
+        addDepartment.setShortName(department.getShortName());
         return departmentRepository.save(department);
     }
 
     @Override
-    public boolean findPKey(Integer department_id) {
+    public boolean findPKey(Integer departmentId) {
         boolean department_exist;
-        department_exist=departmentRepository.exists(department_id);
+        department_exist=departmentRepository.exists(departmentId);
         return department_exist;
     }
 
     @Override
-    public void deleteRecord(Integer department_id) {
-        departmentRepository.delete(department_id);
+    public void deleteRecord(Integer departmentId) {
+        departmentRepository.delete(departmentId);
     }
 
 

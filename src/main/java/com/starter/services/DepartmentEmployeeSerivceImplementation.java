@@ -2,28 +2,29 @@ package com.starter.services;
 
 
 import com.starter.entity.DepartmentEmployee;
+import com.starter.entity.Employee;
+import com.starter.repository.AppRepository;
 import com.starter.repository.DepartmentEmployeeRepository;
+import com.starter.repository.DepartmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Timestamp;
+import java.util.List;
 
 @Service
 public class DepartmentEmployeeSerivceImplementation implements DepartmentEmployeeSerivces {
 
     @Autowired
     private DepartmentEmployeeRepository departmentEmployeeRepository;
+    @Autowired
+    private AppRepository appRepository;
+    @Autowired
+    private DepartmentRepository departmentRepository;
 
-    @Override
-    public DepartmentEmployee addEmployee(DepartmentEmployee departmentEmployee){
-
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-
-        DepartmentEmployee addDepartmentEmployee = new DepartmentEmployee();
-        addDepartmentEmployee.setDepartment_id(departmentEmployee.getDepartment_id());
-        addDepartmentEmployee.setEmp_id(departmentEmployee.getEmp_id());
-        addDepartmentEmployee.setTo_date(null);
-        addDepartmentEmployee.setFrom_date(timestamp);
-        return departmentEmployeeRepository.save(departmentEmployee);
+    public List<Employee> findEmpolyeeByDepartmentId(Integer departmentId){
+        return appRepository.findEmployeeByDepartment(departmentRepository.findOne(departmentId).getName());
     }
+
+
+
 }
