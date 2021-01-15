@@ -1,4 +1,4 @@
-# Employee-management-System #
+# Employee-management-System Programmer Skill Test#
 Employee management system using spring boot and mySql
 
 Requirements:
@@ -17,3 +17,8 @@ Changes need to be done in code to run it.
 5. To run Selenium Testing - 
 6. To run Junit Test Cases-
 
+สามารถ 
+search , create , edit และ delete department
+เพิ่มพนักงานเข้าแผนก
+ย้ายแผน
+ลาออก
