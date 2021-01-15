@@ -11,5 +11,4 @@ public interface DepartmentServices {
     boolean findPKey(Integer departmentId);
     void deleteRecord(Integer id);
 
-
 }

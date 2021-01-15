@@ -12,9 +12,10 @@ import java.util.List;
 @Setter
 @Table(name = "department_emp")
 @Entity
-public class Department_Employee {
+public class DepartmentEmployee {
 
     @Id
+    @GeneratedValue
     private Integer department_emp_id;
     private Integer department_id;
     private Integer emp_id;
@@ -27,7 +28,7 @@ public class Department_Employee {
     @Temporal(TemporalType.TIMESTAMP)
     private Date to_date;
 
-    public Department_Employee() {
+    public DepartmentEmployee() {
     }
 
 

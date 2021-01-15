@@ -79,5 +79,4 @@ public class DepartmentController {
         return "redirect:/departments";
     }
 
-
 }
